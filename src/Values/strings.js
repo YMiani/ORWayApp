@@ -1,0 +1,26 @@
+
+export let dialog2="Nesta página, apresenta-se uma pequena introdução ao problema que será montado, é necessário dar um nome e uma breve descrição para reconhecimento, assim como preencher quantos produtos e recursos estão envolvidos no problema, para que sua estrutura correta seja construída"
+export let dialog3="Aqui é optativo o preenchimento dos nomes dos itens que serão produzidos e dos recursos utilizados por eles, recomenda-se o preenchimento para melhor utilização da aplicação nas próximas telas."
+export let dialog4="Pede-se que identifique o tipo de objetivo esperado, aumentar o retorno ou diminuir os gastos dos processos, também o tipo de unidade em que se encontra os itens que serão produzidos. Por fim, o valor desses itens, em caso de aumento de retorno, o quanto cada item retorna de lucro, já em caso de diminuir gastos, o quanto gasta-se com cada um."
+export let dialog5="Nesta página, a relação de gasto de cada recurso referente a produção dos produtos é essencial para construção do problema. Para cada recurso, escolha a unidade em que este encontra-se e o quanto utilizada em cada item a ser produzido."
+export let dialog6="Aqui o quanto disponível para produção existe de cada recurso, com base no tipo de disponibilidade."
+export let dialog7="Caso a produção de algum item tenha restrição, é necessário informar nessa página escolhendo a opção que não seja 'Ilimitada', caso contrário basta deixar a opção dita anteriormente marcada."
+export let dialog8="Todos os dados preenchidos anteriormente são apresentados aqui, através do botão 'Editar' embaixo de cada campo é possível mudar esses dados específicos sem precisar preencher tudo novamente."
+export let dialog8Web="Todos os dados preenchidos anteriormente são apresentados aqui, através do botão 'Editar' embaixo de cada campo é possível mudar esses dados específicos sem precisar preencher tudo novamente. Com o botão 'Atualizar' é possível mostrar as novas modificações na tela."
+export let dialog9="Você pode editar os dados do campo selecionado na página anterior, caso não queira alterar basta voltar através da seta na aba superior da aplicação, já para alterar basta modificar os campos e apertar no botão salvar."
+export let dialog10="Nesta página, a resposta do problema é apresentado, é possível voltar para a página anterior e alterar os dados em busca de outros resultados ou voltar para a página inicial."
+export let dialogData="Os problemas resolvidos são salvos e mostrados nessa página, é possível acessar seus detalhes clicando sobre o botão com o nome do problema ou excluir arrastando o componente lateralmetne. Ao excluir um problema não será mais possível recuperá-lo."   
+
+
+
+export let help1="Requer um breve preenchimento sobre informações básicas de nome e descrição, assim como quantos produtos e recursos estão envolvidos."
+export let help2="Nesta página, deve preencher os nomes de cada produto e recurso envolvidos."
+export let help3="Você deve preencher com o objetivo que espera alcançar, assim como qual o tipo de unidade do produto e o valor retornado de cada um."
+export let help4="Nesta tela, deve preencher a relação de consumo/gasto de recursos por produto fabricado."
+export let help5="Você deve informar quanto de cada recurso está disponível para uso pelos produtos."
+export let help6="Deve preencher com o esperado de produção dos produtos."
+export let help7="Na revisão, os dados preenchidos anteriormente são apresentados e clicando no botão abaixo de cada campo é possível alterá-los."
+export let help8="Você pode alterar o dado selecionado anteriormente."
+export let help9="Os dados referentes a resposta do problema são apresentados aqui."
+export let helpData="Nesta página, os problemas armazenados são apresentados. É possível acessá-los clicando sobre o nome ou excluir permanentemente deslizando eles lateralmente. Para atualizar a lista após o término de um problema, clique no botão."
+export let helpDataWeb="Nesta página, os problemas armazenados são apresentados. É possível acessá-los clicando sobre o nome ou excluir permanentemente com o botão ao lado deles. Para atualizar a lista após o término de um problema, clique no botão."
