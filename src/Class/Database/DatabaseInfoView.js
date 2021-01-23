@@ -12,7 +12,6 @@ export default class DatabaseInfo extends React.Component {
 
   componentDidMount = async () => {
     const { itemId } = this.props.route.params;
-
     let arrayNull = [];
     let arrayNull2 = [];
     for (let i = 0; i < itemId.num_prod; i++) {
@@ -24,14 +23,10 @@ export default class DatabaseInfo extends React.Component {
     this.setState({ problem: itemId })
     this.setState({ arrayX: arrayNull })
     this.setState({ arrayRestriction: arrayNull2 })
-    console.log(this.state.arrayRestriction)
   }
 
   render() {
-
-
     return (
-
       <View style={styles.container}>
         <ScrollView>
           <Text style={styles.titlePage}>Dados do problema:</Text>
@@ -44,10 +39,8 @@ export default class DatabaseInfo extends React.Component {
           <Text style={styles.textBox}>Função objetivo: {this.state.problem.z} </Text>
           <Text style={styles.textBox}>Variáveis de decisão:</Text>
           <View style={styles.container}>
-
             {this.state.arrayX.map((arrayX, i) => {
               return (
-
                 <View key={'viewData' + i}>
                   <Text key={'textData' + i} style={styles.textBox}>{this.state.problem.name_product[i]}: {this.state.problem.x[i]}</Text>
                 </View>
@@ -59,23 +52,15 @@ export default class DatabaseInfo extends React.Component {
             {this.state.arrayRestriction.map((num_res, i) => {
               return (
                 <View key={'view2Data' + i}>
-
                   <Text key={'text2Data' + i} style={styles.textBox}>{this.state.problem.name_resource[i]}: {this.state.problem.restrictionResult[i]} </Text>
-
                 </View>
               )
             })}
           </View>
           <Text style={styles.textBox}>Tipo de solução: {this.state.problem.answerType} </Text>
         </ScrollView>
-
-
-
       </View>
-
     )
   }
-
-
 }
 

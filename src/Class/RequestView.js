@@ -1,28 +1,24 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import { Text, View, TouchableOpacity, Picker, Platform } from "react-native";
+import { Text, View, TouchableOpacity, Platform, ActivityIndicator, Picker } from "react-native";
 import styles from '../Style/style'
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { fillArray } from './ResourceSpendingView'
 import { help6 } from "../Values/strings"
 import { Mix } from './InitialEntryView'
-import Icon from 'react-native-vector-icons/FontAwesome'
-class RequestRegistration extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            num_prod: [],
-            pickersArray: [],
-            requestError: []
-        }
-    }
 
+class RequestRegistration extends React.Component {
+    state = {
+        num_prod: [],
+        pickersArray: [],
+        requestError: [],
+        loading: false
+    }
     demand = []
     clonePicker = []
     cloneInput = []
     edit = true
     alpha = []
-
     componentDidMount() {
         let arrayFill = []
         this.demand = []
@@ -52,17 +48,14 @@ class RequestRegistration extends React.Component {
         let empty = false
         for (let i = 0; i < Mix.state.problem.num_prod; i++) {
             if (this.state.pickersArray[i] != "Ilimitada" && this.demand[i] == null) {
-                console.log("entrou aqui" + this.state.pickersArray[i])
                 empty = true
                 position[i] = "Preencha este campo."
             }
             if (this.state.pickersArray[i] != "Ilimitada" && this.demand[i] == "") {
-                console.log("entrou aqui2" + this.state.pickersArray[i])
                 empty = true
                 position[i] = "Preencha este campo."
             }
         }
-
         if (empty == true) {
             this.setState(() => ({ requestError: position }));
         } else {
@@ -70,9 +63,13 @@ class RequestRegistration extends React.Component {
         }
         if (empty == false) {
             if (Platform.OS == 'web') {
+                this.setState({ loading: true })
                 this.props.navigation.navigate('ReviewWeb', { itemId: 0 })
+                this.setState({ loading: false })
             } else {
+                this.setState({ loading: true })
                 this.props.navigation.navigate('Review', { itemId: 0 })
+                this.setState({ loading: false })
             }
         }
     }
@@ -100,14 +97,11 @@ class RequestRegistration extends React.Component {
             this.setState({ pickersArray: this.clonePicker })
             Mix.setRequest(this.cloneInput)
         }
-
         return (
             <ScrollView>
                 <View style={styles.container}>
                     <Text style={styles.titlePage}>Demandas de produção:</Text>
                     <Text style={styles.helpBox}>{help6}</Text>
-                    <Text style={styles.textBox}>Existe relação de restrição entre os produtos?</Text>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('RequestRelation')} style={styles.btnAddRelation}><Text>Sim</Text><Icon name="arrow-right" size={20} color="black" /></TouchableOpacity>
                     <View style={styles.container}>
                         {
                             this.state.num_prod.map((num_prod, i) => {
@@ -125,11 +119,23 @@ class RequestRegistration extends React.Component {
                             })
                         }
                     </View>
-                    <TouchableOpacity onPress={() => this.requiredFields()} style={styles.btnNext}><Text>Próximo</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.requiredFields()} style={styles.btnNext}>
+                        {
+                            this.state.loading ? (
+                                <ActivityIndicator style={{ paddingBottom: 15 }} animating={this.state.loading} size={"large"} color={"white"} />
+                            ) : (
+                                    <Text style={styles.textButton}>Próximo</Text>
+                                )
+                        }
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         )
     }
 }
+
+
+
+
 
 export default RequestRegistration;  

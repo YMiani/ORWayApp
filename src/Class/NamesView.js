@@ -1,20 +1,25 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import {  Text,  View,  TouchableOpacity } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaView, Text, StatusBar, StyleSheet, View, Image, TouchableOpacity, Platform } from "react-native";
 import styles from '../Style/style'
-import { ScrollView, TextInput } from 'react-native-gesture-handler';
+import { ScrollView, TextInput, createNativeWrapper } from 'react-native-gesture-handler';
+
+
 import { Mix } from './InitialEntryView'
+
+
+
 import { help2 } from "../Values/strings"
 
-class NamesRegistration extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            name_products: [],
-            name_resource: [],
-        }
-    }
 
+class NamesRegistration extends React.Component {
+    state = {
+        loading: false,
+        name_products: [],
+        name_resource: [],
+    }
     ArrayNameProd = []
     ArrayNameResc = []
 
@@ -35,7 +40,9 @@ class NamesRegistration extends React.Component {
     saveInformation() {
         Mix.setProdName(this.ArrayNameProd)
         Mix.setResName(this.ArrayNameResc)
-        this.props.navigation.navigate('RequestRelation')
+        this.setState({ loading: true })
+        this.props.navigation.navigate('Values')
+        this.setState({ loading: false })
     }
 
     render() {
@@ -70,7 +77,15 @@ class NamesRegistration extends React.Component {
                             })
                         }
                     </View>
-                    <TouchableOpacity onPress={() => this.saveInformation()} style={styles.btnNext}><Text>Próximo</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.saveInformation()} style={styles.btnNext}>
+                        {
+                            this.state.loading ? (
+                                <ActivityIndicator style={{ paddingBottom: 15 }} animating={this.state.loading} size={"large"} color={"white"} />
+                            ) : (
+                                    <Text style={styles.textButton}>Próximo</Text>
+                                )
+                        }
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         )

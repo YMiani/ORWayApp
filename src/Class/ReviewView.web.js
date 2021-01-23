@@ -1,32 +1,22 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { SafeAreaView, Text, StatusBar, StyleSheet, View, Image, TouchableOpacity, Platform } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import styles from '../Style/style'
-import { ScrollView, TextInput, createNativeWrapper } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome'
-//import Mix, {setRightSide, setRequest, setTypeOpt} from './MixProblem'
-import RequestRegistration, { demand } from './RequestView'
 import { help7 } from "../Values/strings"
 import { Mix } from './InitialEntryView'
 
-
 class ReviewWebRegistration extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            num_prod: [],
-            num_res: [],
-            id: ''
-        }
+    state = {
+        num_prod: [],
+        num_res: [],
+        id: '',
+        loading: false
     }
-
     componentDidMount() {
         const { itemId } = this.props.route.params;
-
         this.setState({ id: JSON.stringify(itemId) })
-
         let aux = []
         for (let m = 0; m < Mix.state.problem.num_prod; m++) {
             aux[m] = ''
@@ -35,15 +25,12 @@ class ReviewWebRegistration extends React.Component {
         for (let n = 0; n < Mix.state.problem.num_resource; n++) {
             aux2[n] = ''
         }
-
         this.setState({ num_prod: aux, num_res: aux2 })
     }
 
     forceUpdate() {
         const { itemId } = this.props.route.params;
-
         this.setState({ id: JSON.stringify(itemId) })
-
         let aux = []
         for (let m = 0; m < Mix.state.problem.num_prod; m++) {
             aux[m] = ''
@@ -52,32 +39,30 @@ class ReviewWebRegistration extends React.Component {
         for (let n = 0; n < Mix.state.problem.num_resource; n++) {
             aux2[n] = ''
         }
-
         this.setState({ num_prod: aux, num_res: aux2 })
         alert("Informações foram atualizadas!");
     }
 
+    loadNext() {
+        this.setState({ loading: true })
+        this.props.navigation.navigate('Resolution')
+        this.setState({ loading: false })
+    }
+
     render() {
-
         return (
-
             <ScrollView key={this.state.id}>
-
                 <View style={styles.container}>
                     <Text style={styles.titlePage}>Revisão:</Text>
                     <Text style={styles.helpBox}>{help7}</Text>
                     <TouchableOpacity onPress={() => this.forceUpdate()} style={styles.updateReview}><Text style={styles.updateTex}>Atualizar</Text><Icon name="refresh" size={25} color="white" /></TouchableOpacity>
                     <View style={styles.containerWeb}>
-
                         <Text style={styles.textBox}>Número de produtos: {Mix.state.problem.num_prod}</Text>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('ReviewEdit', { itemId: 1 })} style={styles.btnEditWeb}><Icon name="pencil-square" size={35} color="white" /></TouchableOpacity>
-
                         <Text style={styles.textBox}>Número de recursos: {Mix.state.problem.num_resource}</Text>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('ReviewEdit', { itemId: 2 })} style={styles.btnEditWeb}><Icon name="pencil-square" size={35} color="white" /></TouchableOpacity>
-
                         <Text style={styles.textBox}>Tipo de otimização: {Mix.state.problem.type_optimization} </Text>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('ReviewEdit', { itemId: 3 })} style={styles.btnEditWeb}><Icon name="pencil-square" size={35} color="white" /></TouchableOpacity>
-
                         <View style={styles.containerWeb}>
                             {this.state.num_prod.map((num_prod, i) => {
                                 return (
@@ -88,7 +73,6 @@ class ReviewWebRegistration extends React.Component {
                                 )
                             })}
                         </View>
-
                         <View style={styles.containerWeb}>
                             {this.state.num_res.map((num_res, i) => {
                                 return (
@@ -96,18 +80,15 @@ class ReviewWebRegistration extends React.Component {
                                         {this.state.num_prod.map((num_prod, j) => {
                                             return (
                                                 <View key={'viewProd' + j}>
-
                                                     <Text key={'textProd' + j} style={styles.textBox}>{Mix.state.problem.name_product[j]} consome {Mix.state.problem.itemPerResource[i][j]} em {Mix.state.problem.unity_resource[i].toLowerCase()} de {Mix.state.problem.name_resource[i]}</Text>
                                                     <TouchableOpacity key={'touchableProd' + j} onPress={() => this.props.navigation.navigate('ReviewEdit', { itemId: 5, state: j, stateParent: i })} style={styles.btnEditWeb}><Icon name="pencil-square" size={35} color="white" /></TouchableOpacity>
                                                 </View>
                                             )
                                         })}
-
                                     </View>
                                 )
                             })}
                         </View>
-
                         <View style={styles.containerWeb}>
                             {this.state.num_res.map((num_res, i) => {
                                 return (
@@ -118,7 +99,6 @@ class ReviewWebRegistration extends React.Component {
                                 )
                             })}
                         </View>
-
                         <View style={styles.containerWeb}>
                             {this.state.num_prod.map((num_prod, i) => {
                                 return (
@@ -131,13 +111,19 @@ class ReviewWebRegistration extends React.Component {
                             })}
                         </View>
                     </View>
-
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Resolution')} style={styles.btnNext}><Text>Próximo</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.loadNext()} style={styles.btnNext}>
+                        {
+                            this.state.loading ? (
+                                <ActivityIndicator style={{ paddingBottom: 15 }} animating={this.state.loading} size={"large"} color={"white"} />
+                            ) : (
+                                    <Text style={styles.textButton}>Próximo</Text>
+                                )
+                        }
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         )
     }
 }
-
 
 export default ReviewWebRegistration;  

@@ -49,6 +49,10 @@ export default StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  textButton: {
+    fontWeight: 'bold',
+    color: 'black'
+  },
   flatView: {
     display: 'flex',
     flexDirection: 'row',
@@ -103,33 +107,28 @@ export default StyleSheet.create({
     backgroundColor: "#C0C0C0",
     fontSize: 18,
   },
-  textBoxRelation: {
-    paddingLeft: 20,
-    paddingBottom: 10,
-    paddingTop: 10,
-    marginTop:10,
-    marginBottom:10,
-    backgroundColor: "#C0C0C0",
-    fontSize: 18,
-  },
   editBox: {
     margin: 10,
     height: 40,
     borderColor: 'gray',
     borderWidth: 1
   },
-  buttonDesign: {
-    alignSelf:'flex-end',
-    marginRight:20
-    
-  },
-  image: {
+  imagem: {
+    borderWidth: 2,
     alignSelf: 'center',
-    width: 300,
-    height: 200,
+    width: 280,
+    height: 180,
     resizeMode: 'contain',
     marginVertical: '10%',
-
+  },
+  imagemLogoMenor: {
+    borderWidth: 2,
+    alignSelf: 'center',
+    width: 300,
+    height: 72,
+    marginBottom: '20%',
+    resizeMode: 'contain',
+    marginVertical: '10%',
   },
   btnNext: {
     marginBottom: 60,
@@ -146,21 +145,6 @@ export default StyleSheet.create({
     backgroundColor: '#0EB92F',
     borderColor: 'black',
   },
-  btnAdd: {
-    marginBottom: 20,
-    marginTop: 20,
-    alignSelf: 'center',
-    borderWidth: 1,
-    borderRadius: 10,
-    width: 200,
-    paddingTop: 15,
-    textAlign: 'center',
-    justifyContent: 'center',
-    flexDirection: "row",
-    height: 50,
-    backgroundColor: '#7B68EE',
-    borderColor: 'black',
-  },
   btnNextWeb: {
     marginBottom: 20,
     marginTop: 20,
@@ -175,7 +159,6 @@ export default StyleSheet.create({
     height: 50,
     backgroundColor: '#0EB92F',
     borderColor: 'black',
-
   },
   btnSaveEdit: {
     marginBottom: 5,
@@ -191,24 +174,6 @@ export default StyleSheet.create({
     height: 50,
     backgroundColor: '#0EB92F',
     borderColor: 'black',
-  },
-  btnAddRelation: {
-    marginBottom: 5,
-    marginTop: 20,
-    alignSelf: 'center',
-    borderWidth: 1,
-    borderRadius: 10,
-    width: 100,
-    paddingTop: 15,
-    paddingRight:10,
-    paddingLeft:10,
-    textAlign: 'center',
-    justifyContent: 'space-between',
-    flexDirection: "row",
-    height: 50,
-    backgroundColor: '#0EB92F',
-    borderColor: 'black',
-    fontSize:20
   },
   btnEdit: {
     marginBottom: 10,
@@ -268,7 +233,6 @@ export default StyleSheet.create({
     flexDirection: "row",
     height: 50,
     borderColor: 'black',
-
   },
   updateTex: {
     fontSize: 15,
@@ -327,16 +291,6 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   combobox: {
-    height: 50,
-    width: '80%',
-    marginLeft: 20,
-  },
-  comboboxRelation: {
-    height: 50,
-    width: '30%',
-    marginLeft: 20,
-  },
-  comboboxLimit: {
     height: 50,
     width: '80%',
     marginLeft: 20,
